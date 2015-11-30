@@ -1,6 +1,7 @@
 package com.ncs.commonclass;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -16,6 +17,9 @@ public class LocaleResourceBundleTest {
 		System.out.println(rb1.getString("message"));
 		System.out.println(rb2.getString("message"));
 		System.out.println(rb3.getString("message"));
+		
+		System.out.println(MessageFormat.format(rb1.getString("message"), "GP"));
+		System.out.println(MessageFormat.format(rb2.getString("message"), "GP"));
+		System.out.println(MessageFormat.format(rb3.getString("message"), "GP"));
 	}
-	
 }
