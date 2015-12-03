@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class DataInputAndPOutputStreamTest {
+public class DataInputAndOutputStreamTest {
 
 	public static void main(String[] args) {
 		show();
