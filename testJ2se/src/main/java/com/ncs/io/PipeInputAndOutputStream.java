@@ -31,9 +31,15 @@ class Send implements Runnable{
 	@Override
 	public void run() {
 		System.out.println("Send...");
+		try {
+			Thread.sleep(5000); 
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		String message = "Guang Ping said : Welcome";
 		try {
 			pos.write(message.getBytes());
+			System.out.println("Message sent...");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally{
@@ -61,7 +67,8 @@ class Rec implements Runnable{
 		byte[] buff = new byte[1024];
 		int length = 0;
 		try {
-			while((length = pis.read(buff)) != -1){
+			while((length = pis.read(buff)) != -1){//read方法是阻塞的，一直等到有消息进来
+				System.out.println("Message coming...");
 				sb.append(new String(buff,0,length));
 			}
 		} catch (IOException e) {
