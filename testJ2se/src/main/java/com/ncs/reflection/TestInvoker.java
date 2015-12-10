@@ -1,4 +1,4 @@
-package com.ncs.guangping;
+package com.ncs.reflection;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -6,32 +6,19 @@ import java.lang.reflect.Method;
 
 public class TestInvoker {
 
-	public String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public int add(int a,int b){
-		return a+b;
-	}
-	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-		Class<?> invokerClass = Class.forName("com.ncs.guangping.TestInvoker");
+		Class<?> invokerClass = Class.forName("com.ncs.reflection.Invoker");
 		Object invokerInstance = invokerClass.newInstance();
 		//System.out.println(invokerInstance instanceof  TestInvoker);
-		//Method[] methods = invokerClass.getDeclaredMethods();ß
+		//Method[] methods = invokerClass.getDeclaredMethods();
 		Method setName = invokerClass.getMethod("setName", new Class[]{String.class});
 		setName.invoke(invokerInstance, new Object[]{"GuangPing"});
 		
 		Method getName = invokerClass.getMethod("getName", new Class[]{});
 		System.out.println(getName.invoke(invokerInstance, new Object[]{}));
 		
-		Method add = invokerClass.getMethod("add", new Class[]{int.class,int.class});
+		Method add = invokerClass.getMethod("add", new Class[]{Integer.class,int.class});
 		System.out.println(add.invoke(invokerInstance, new Object[]{5,6}));
 		
 		System.out.println("===================");
@@ -48,5 +35,35 @@ public class TestInvoker {
 		Method method = clazz.getDeclaredMethod("prints", new Class[]{});
 		method.setAccessible(true);
 		method.invoke(obj, new Object[]{});
+	}
+}
+
+class Invoker{
+	private String name;
+	private int age;
+	
+	public Invoker(){
+	}
+	
+	public Invoker(String name, int age){
+		this.name = name;
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int add(Integer a, int b){
+		return a+b;
+	}
+
+	public void prints(){
+		System.out.println(name+": "+age);
 	}
 }

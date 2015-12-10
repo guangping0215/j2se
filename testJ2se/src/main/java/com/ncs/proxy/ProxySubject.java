@@ -2,14 +2,14 @@ package com.ncs.proxy;
 
 public class ProxySubject extends Subject{
 
-	private RealSubject realSubject;
+	private Subject subject;
 	
+	public ProxySubject(Subject subject) {
+		this.subject = subject;
+	}
 	public void request() {
-		if( null == realSubject){
-			realSubject = new RealSubject();
-		}
 		preHandle();
-		realSubject.request();
+		subject.request();
 		postHandle();
 	}
 

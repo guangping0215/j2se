@@ -3,7 +3,8 @@ package com.ncs.proxy;
 public class Client {
 
 	public static void main(String[] args) {
-		ProxySubject proxy = new ProxySubject();
+		Subject subject = new RealSubject();
+		ProxySubject proxy = new ProxySubject(subject);
 		
 		proxy.request();
 	}
