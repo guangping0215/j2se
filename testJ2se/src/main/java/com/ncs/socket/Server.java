@@ -10,10 +10,10 @@ import java.net.Socket;
 
 
 public class Server {
-
 	public static void main(String[] args) throws Exception {
 		ServerSocket socServer = new ServerSocket(5001);
 		while(true){
+			System.out.println("Server started.. wait for client connect...");
 			Socket soc = socServer.accept();
 			System.out.println(soc);
 			new ServerInputThread(soc).start();
