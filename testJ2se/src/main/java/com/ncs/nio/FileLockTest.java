@@ -11,8 +11,10 @@ import java.nio.channels.FileLock;
 
 public class FileLockTest {
 
+	//在MAC环境测试不出
 	public static void main(String[] args) throws InterruptedException {
-		final String path = "/Users/guangping/test/fileChannel.txt";
+		//final String path = "/Users/guangping/test/fileChannel.txt";
+		final String path = "D:/fileChannel.txt";
 		final File file = new File(path);
 		new Thread(new Runnable() {
 			
