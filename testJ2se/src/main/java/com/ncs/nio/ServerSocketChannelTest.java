@@ -23,6 +23,7 @@ public class ServerSocketChannelTest {
 		ssc.register(selector, SelectionKey.OP_ACCEPT);//相当于使用accept接收
 		int keyAdd = 0;
 		while((keyAdd = selector.select()) > 0){ //接收一组键，相应的通道已为IO做准备
+			System.out.println(keyAdd);
 			Set<SelectionKey> sks = selector.selectedKeys();
 			Iterator<SelectionKey> itsks =  sks.iterator();
 			while(itsks.hasNext()){
