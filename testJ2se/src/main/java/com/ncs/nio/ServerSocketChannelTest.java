@@ -21,7 +21,7 @@ public class ServerSocketChannelTest {
 		ServerSocket sc = ssc.socket();
 		sc.bind(new InetSocketAddress(9999));//绑定地址
 		ssc.register(selector, SelectionKey.OP_ACCEPT);//相当于使用accept接收
-		int keyAdd = 0;
+		int keyAdd = 0;//keyAdd表示Selector上有多少个可用的IO操作
 		while((keyAdd = selector.select()) > 0){ //接收一组键，相应的通道已为IO做准备
 			System.out.println(keyAdd);
 			Set<SelectionKey> sks = selector.selectedKeys();

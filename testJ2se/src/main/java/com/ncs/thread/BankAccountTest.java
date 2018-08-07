@@ -17,9 +17,10 @@ public class BankAccountTest {
 
 class BankAccount{
 	
-	private int money = 1000;
+	private  int money = 10000;
 	
-	public synchronized int collectMoney( int amount ){
+	//public synchronized int collectMoney( int amount ){
+	public  int collectMoney( int amount ){
 		
 		if(amount > money){
 			System.out.println("not much money to get...");
@@ -33,8 +34,11 @@ class BankAccount{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			money -= amount;
-			return amount;
+			synchronized(this){
+				money -= amount;
+			}
+			
+			return money;
 		}
 	}
 	
@@ -50,6 +54,8 @@ class MoneyThread extends Thread{
 
 	@Override
 	public void run() {
-		System.out.println(bankAccount.collectMoney(800));
+		for(int i = 0;i<10;i++)
+			System.out.println(bankAccount.collectMoney(800));
+		
 	}
 }
